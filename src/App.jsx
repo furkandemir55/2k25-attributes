@@ -50,7 +50,6 @@ function App() {
             </thead>
             <tbody>
             {filteredData.map((att, i) => {
-                console.log(selectedHeights.length % (i + 1))
                 const isLastOfType = (i + 1) % selectedHeights.length === 0
                 return (<tr className={isLastOfType ? 'last' : undefined} key={`${att.Height}-${att.Attribute}`}
                 >
