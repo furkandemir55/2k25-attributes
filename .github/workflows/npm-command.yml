@@ -1,0 +1,29 @@
+name: Run npm command on merge to main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-npm-command:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Replace with your Node.js version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run your npm command
+      - name: Run npm command
+        run: npm run deploy # Replace <your-script> with the actual command
