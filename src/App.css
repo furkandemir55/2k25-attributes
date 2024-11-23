@@ -26,3 +26,8 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+td {
+    cursor: pointer;
+    user-select: none;
+}

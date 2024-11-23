@@ -2,6 +2,7 @@ import {useState} from 'react'
 
 import './App.css'
 import {data} from "./data.js";
+import {Cell} from "./components/Cell.jsx";
 
 function App() {
 
@@ -9,13 +10,13 @@ function App() {
         if (acc.includes(cur.Attribute)) return acc
         return [...acc, cur.Attribute]
     }, [])
-    const [selectedAttributes, setSelectedAttributes] = useState(attributes)
+    const [selectedAttributes, setSelectedAttributes] = useState(['Defensive Rebound', 'Driving Dunk', 'Steal'])
 
     const heights = data.reduce((acc, cur) => {
         if (acc.includes(cur.Height)) return acc
         return [...acc, cur.Height]
     }, [])
-    const [selectedHeights, setSelectedHeights] = useState(heights)
+    const [selectedHeights, setSelectedHeights] = useState(["6'4", "6'6", "6'8"])
 
 
     const filteredData = data.filter(att => selectedHeights.includes(att.Height) && selectedAttributes.includes(att.Attribute)).toSorted((a, b) => a.Attribute - b.Attribute)
@@ -52,7 +53,7 @@ function App() {
                 return (<tr key={`${att.Height}-${att.Attribute}`}
                 >{Object.entries(att)
                     .toSorted((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
-                    .map((val) => <td key={`${val[0]}`}>{val[1]}</td>)}</tr>)
+                    .map((val) => <Cell key={`${val[0]}`}>{val[1]}</Cell>)}</tr>)
             })}
             </tbody>
         </table>
