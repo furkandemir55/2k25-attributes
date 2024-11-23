@@ -49,8 +49,10 @@ function App() {
             </tr>
             </thead>
             <tbody>
-            {filteredData.map((att) => {
-                return (<tr key={`${att.Height}-${att.Attribute}`}
+            {filteredData.map((att,i) => {
+                console.log(selectedHeights.length % (i + 1))
+                const isLastOfType = (i + 1) % selectedHeights.length === 0
+                return (<tr className={isLastOfType ? 'last' : undefined} key={`${att.Height}-${att.Attribute}`}
                 >{Object.entries(att)
                     .toSorted((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
                     .map((val) => <Cell key={`${val[0]}`}>{val[1]}</Cell>)}</tr>)
